@@ -1,0 +1,57 @@
+CREATE Procedure [dbo].[DeleteEmployee]    
+(    
+ @Id integer    
+)    
+as     
+Begin    
+ Delete Employees where Id=@Id;    
+End  
+GO
+
+CREATE procedure [dbo].[spGetEmployeeById]
+@Id int
+as
+Begin
+     Select Id, FirstName, LastName, Gender, JobTitle, Salary
+     from Employees
+     where Id = @Id
+End
+GO
+
+CREATE procedure [dbo].[spGetEmployees]
+as
+Begin
+ Select * from Employees
+End
+GO
+
+
+CREATE procedure [dbo].[spInsertEmployee]
+@FirstName nvarchar(500),
+@LastName nvarchar(500),
+@Gender nvarchar(100),
+@JobTitle nvarchar(500),
+@Salary int
+as
+Begin
+     Insert into Employees
+     values ( @FirstName, @LastName, @Gender, @JobTitle, @Salary)
+End
+GO
+
+
+CREATE procedure [dbo].[UpdateEmployee]
+@Id int,
+@FirstName nvarchar(50),
+@LastName nvarchar(50),
+@Gender nvarchar(50),
+@JobTitle nvarchar(500),
+@Salary int
+as
+Begin
+     Update Employees Set
+     FirstName = @FirstName, LastName = @LastName, Gender = @Gender,
+     Salary = @Salary, JobTitle = @JobTitle
+     where Id = @Id
+End
+GO
